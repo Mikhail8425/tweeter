@@ -9,10 +9,35 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <!--Stylesheet for nav bar-->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Stylesheet for header-->
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    
+    <!--Stylesheet for new tweet-->
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    
+    
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
   </head>
@@ -20,10 +45,37 @@
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
+      <span id="logo">tweeter</span>
+      <span>
+        <p><em>Write</em> a new tweet</p>
+        <i class="fa-solid fa-angles-down"></i>
+      </span>
     </nav>
 
     <!-- Page-specific (main) content here -->
+
+    <header>
+      <div>
+          <img src="/images/profile-hex.png"> 
+      </div>
+      <br>
+      <div>
+          <h2>Your Name</h2>
+      </div>
+    </header>
+
+    <section id="new-tweet-section">
+      <h2>Compose Tweet</h2>
+      <form action="/tweets" method="POST" id="new-tweet-form">
+        <textarea name="text" id="tweet-textarea" placeholder="What are you humming about?"></textarea>
+        <div id="new-tweet-footer">
+          <button id="submit" type="submit">Tweet</button>
+          <output name="counter" id="counter" for="tweet-text">140</output>
+        </div>
+      </form>
+    </section>
+    </section>
+
     <main class="container"></main>
   </body>
 </html>
