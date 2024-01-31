@@ -3,20 +3,18 @@ $(document).ready(function() {
 
   //Target textarea by ID, run function as input happens
   $("#tweet-textarea").on("input", function () {
-  const inputChar = $(this).val().length;
-  console.log(inputChar)
+    const maxChar = 140;
+    const inputChar = $(this).val().length;
+    const charCounter = maxChar - inputChar;
 
   const $counterElement = $(this).parent().find("#counter");
-  $counterElement.text(inputChar);
-  console.log($counterElement)
+  $counterElement.text(charCounter);
 
-  if (inputChar > 140) {
+  if (charCounter < 0) {
     $counterElement.addClass("overLimit");
   } else {
     $counterElement.removeClass("overLimit");
   }
   // console.log('charCounter', charCounter)
   })
-
-
 });
