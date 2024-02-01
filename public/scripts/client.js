@@ -1,10 +1,12 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-// const $tweet = $(`<article class="tweet">Hello world</article>`);
+// //makes top nav arrow redirect to tweet box on click
+$('.scroll').click(() => {
+  $('html,body').animate({ scrollTop: 0 }, 1000);
+  $('#tweet-text').focus();
+});
+
+//function to build html for tweets dynamically
 const createTweetElement = function (tweetObj) {
+  console.log('createTweetElement starts')
   const $tweet = $("<article class='tweet'>");
   //tweet header
   const $header = $("<header class='th-header'>");
@@ -26,7 +28,7 @@ const createTweetElement = function (tweetObj) {
   //tweet footer
   const $footer = $('<footer>');
   //tweet footer children
-  const timeDelta = moment(tweetObj.created_at).fromNow();
+  const timeDelta = new Date(tweetObj.created_at);
   const $timeStamp = $('<p>').text(timeDelta);
   const $footerD2 = $("<div class='icons'>");
   const $flag = $("<i class='far fa-flag' id='flag'>");
@@ -39,3 +41,39 @@ const createTweetElement = function (tweetObj) {
   $tweet.append($header, $contentContainer, $footer);
   return $tweet;
 };
+
+//loops through all tweets
+const renderTweets = function (tweets) {
+  console.log('renderTweets starts')
+  const $container = $('#tweets-container');
+  tweets.forEach((tweet) => {
+    const tweetList = createTweetElement(tweet);
+    $container.prepend(tweetList);
+  });
+};
+
+const loadTweets = () => {
+  console.log('loadTweets starts')
+  $.ajax({
+    url: '/tweets',
+    method: 'GET',
+    dataType: 'json',
+    success: (tweets) => {
+      renderTweets(tweets);
+    },
+    error: (error) => {
+      console.error(error);
+    }
+  });
+};
+
+$(document).ready(function () {
+  console.log('documet is ready')
+  loadTweets();
+
+  const $submitTweet = $('#submit-tweet');
+  $submitTweet.on('submit', function (event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+  });
+});
