@@ -33,6 +33,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
+    <!--Stylesheet for tweets-->
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
     
     
     <!-- External JS -->
@@ -55,13 +63,15 @@
 
     <!-- Page-specific (main) content here -->
 
-    <header>
-      <div>
-          <img src="/images/profile-hex.png"> 
-      </div>
-      <br>
-      <div>
-          <h2>Your Name</h2>
+    <!-- Header -->
+    <header class="top-header">
+      <div class="avatar-name">
+        <div class="avatar">
+          <img src="/images/profile-hex.png" />
+        </div>
+        <h2>
+          Mikhail Shemet
+        </h2>
       </div>
     </header>
 
@@ -75,8 +85,29 @@
         </div>
       </form>
     </section>
-    </section>
-
+ 
+    <article class="tweet-history">
+      <header class='th-header'>
+        <div class='name-left'>
+          <img src="https://i.imgur.com/73hZDYK.png">
+          <h3>Newton</h3>
+         
+        </div> 
+        <p>@SirIsaac</p>
+      </header>
+      <div class='display-tweet'>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      </div>
+      <footer>
+        <p>Time</p>
+        <div class='icons'>
+          <i class='far fa-flag' id='flag'></i>
+          <i class='fas fa-retweet' id='retweet'></i>
+          <i class='far fa-heart' id='heart'></i>
+        </div>
+      </footer>
+    </article>
+    
     <main class="container"></main>
   </body>
 </html>

@@ -6,15 +6,14 @@ $(document).ready(function() {
     const maxChar = 140;
     const inputChar = $(this).val().length;
     const charCounter = maxChar - inputChar;
+    
+    const $counterElement = $(this).parent().find("#counter");
+    $counterElement.text(charCounter);
 
-  const $counterElement = $(this).parent().find("#counter");
-  $counterElement.text(charCounter);
-
-  if (charCounter < 0) {
-    $counterElement.addClass("overLimit");
-  } else {
-    $counterElement.removeClass("overLimit");
-  }
-  // console.log('charCounter', charCounter)
+    if (charCounter < 0) {
+      $counterElement.addClass("overLimit");
+    } else {
+      $counterElement.removeClass("overLimit");
+    }
   })
 });
