@@ -4,6 +4,8 @@ $('.scroll').click(() => {
   $('#tweet-text').focus();
 });
 
+
+
 //function to build html for tweets dynamically
 const createTweetElement = function (tweetObj) {
   console.log('createTweetElement starts')
@@ -28,8 +30,10 @@ const createTweetElement = function (tweetObj) {
   //tweet footer
   const $footer = $('<footer>');
   //tweet footer children
-  const timeDelta = new Date(tweetObj.created_at);
-  const $timeStamp = $('<p>').text(timeDelta);
+  // const timeDelta = new Date(tweetObj.created_at); - works, shows date tweet was created
+  const timeAgo = timeago.format(tweetObj.created_at);
+
+  const $timeStamp = $('<p>').text(timeAgo);
   const $footerD2 = $("<div class='icons'>");
   const $flag = $("<i class='far fa-flag' id='flag'>");
   const $retweet = $("<i class='fas fa-retweet' id='retweet'>");
