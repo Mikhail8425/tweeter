@@ -16,12 +16,10 @@
   margin-bottom:.25em;
   border-style:none;
   resize: none;
-  white-space: nowwrap;
-  height: 2em;
+  height: 4em;
   border-bottom: solid;
   background-color: #f4f1ec;
   outline: none;
-  font-size: 80%;
   font-weight: 600;
 }
 
@@ -54,4 +52,8 @@
 
 .new-tweet-error > * {
   padding: 2px;
+}
+
+.overLimit {
+  color: red;
 }

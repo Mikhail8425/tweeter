@@ -14,5 +14,24 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Dependencies
 
-- Express
-- Node 5.10.x or above
+  body-parser
+  chance
+  express
+  md5
+  timeago.js
+
+
+## Stable on
+
+  body-parser:  1.15.2
+  chance:       1.0.2
+  express:      4.18.2
+  md5:          2.1.0
+  timeago.js:   4.0.2
+  node:         12.22.7
+
+  ## Screenshots
+  
+  ![Writting a post](/docs/tweeter1.png)
+  ![Writting a post that is too long](/docs/tweeter2.png)
+  ![Existing posts](/docs/tweeter1.png)
