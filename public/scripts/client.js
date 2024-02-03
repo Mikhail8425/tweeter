@@ -9,43 +9,50 @@ $(document).ready(function () {
     });
   };
 
-  const createTweetElement = function (tweetObj) {
-    console.log('createTweetElement starts')
-    const $tweet = $("<article class='tweet'>");
-    //tweet header
-    const $header = $("<header class='th-header'>");
-    //header children
-    const $headerD1 = $("<div class='name-left'>");
-    const $avatar = $('<img>').attr('src', tweetObj.user.avatars);
-    const $name = $('<h3>').text(tweetObj.user.name);
-    $headerD1.append($avatar, $name);
-    const $headerD2 = $("<div id='userID'>");
-    const $handle = $('<p>').text(tweetObj.user.handle);
-    $headerD2.append($handle);
-    //append the contents of header
-    $header.append($headerD1, $headerD2);
-    //tweet content
-    const $contentContainer = $("<div class='display-tweet'>");
-    const $contentText = $('<p>').text(tweetObj.content.text);
-    //append tweet text to container
-    $contentContainer.append($contentText);
-    //tweet footer
-    const $footer = $('<footer>');
-    //tweet footer children
-    // const timeDelta = new Date(tweetObj.created_at); - works, shows date tweet was created
-    const timeAgo = timeago.format(tweetObj.created_at);
-  
-    const $timeStamp = $('<p>').text(timeAgo);
-    const $footerD2 = $("<div class='icons'>");
-    const $flag = $("<i class='far fa-flag' id='flag'>");
-    const $retweet = $("<i class='fas fa-retweet' id='retweet'>");
-    const $heart = $("<i class='far fa-heart' id='heart'>");
-    $footerD2.append($flag, $retweet, $heart);
-    //append footer children to footer
-    $footer.append($timeStamp, $footerD2);
-    //add all of the children to the tweet div
-    $tweet.append($header, $contentContainer, $footer);
-    return $tweet;
+  const createTweetElement = function(tweetData) {
+    const { user, content, created_at } = tweetData;
+    let $article = $("<article>");
+    //header section first
+    let $header = $("<header>");
+    let $headerDiv = $("<div>");
+    let $image = $("<img>").attr('src', user.avatars);
+    let $name = $("<div>").text(user.name);
+    let $handleAside = $("<aside>").text(user.handle);
+    $article.append(
+      $header.append(
+        $headerDiv.append(
+          $image
+        ).append(
+          $name
+        )
+      ).append(
+        $handleAside
+      )
+    );
+    // middle section with tweet text
+    let $section = $("<span>").text(content.text);
+    $article.append($section);
+    // footer section
+    let $footer = $("<footer>");
+    let $footerTimeDiv = $("<div>").text(timeago.format(created_at));
+    let $footerButtonDiv = $("<div>");
+    let $footerFlag = $("<i>").addClass("fa-solid fa-flag");
+    let $footerReTweet = $("<i>").addClass("fa-solid fa-retweet");
+    let $footerHeart = $("<i>").addClass("fa-solid fa-heart");
+    $article.append(
+      $footer.append(
+        $footerTimeDiv
+      ).append(
+        $footerButtonDiv.append(
+          $footerFlag
+        ).append(
+          $footerReTweet
+        ).append(
+          $footerHeart
+        )
+      )
+    );
+    return $article;
   };
 
   // call the function "renderTweets"
