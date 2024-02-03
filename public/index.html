@@ -2,115 +2,66 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <title>Tweeter - Home Page</title>
 
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
-    <!--Stylesheet for nav bar-->
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--Stylesheet for header-->
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
-    
-    <!--Stylesheet for new tweet-->
-    <link rel="stylesheet" href="/styles/newTweet.css" type="text/css" />
-    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/article.css" type="text/css" />
 
-    <!--Stylesheet for tweets-->
-    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
-    <!-- Fonts: Source 3: 300 reg + italic; 600: reg + italic; Bungee  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Crimson+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
-
-    <!-- timeago -->
-    <script src="dist/timeago.min.js"></script>
-    <script src="//unpkg.com/timeago.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
+    <script src="/scripts/composer-char-counter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
-
   <body>
-    <!-- Top nav bar (fixed) -->
     <nav>
-      <span id="logo">tweeter</span>
-      <span>
-        <p><em>Write</em> a new tweet</p>
-        <i class="fa-solid fa-angles-down"></i>
-      </span>
+      <span class="tweeter">tweeter</span>
+      <div class="nav-bar-right">
+        <span><span class ="write">Write</span> a new tweet</span>
+        <i class="fa-solid fa-angles-down nav-down-arrow"></i>
+      </div>
     </nav>
-
-    <!-- Page-specific (main) content here -->
-
-    <!-- Header -->
-    <header class="top-header">
-      <div class="avatar-name">
-        <div class="avatar">
-          <img src="/images/profile-hex.png" />
+    <section class="page-content"> 
+      <header class="page-header">
+        <div>
+          <img src="/images/profile-hex.png">
         </div>
-        <h2>
-          Mikhail Shemet
-        </h2>
-      </div>
-    </header>
-
-    <section id="new-tweet-section">
-      <h2>Compose Tweet</h2>
-      <form action="/tweets" method="POST" id="new-tweet-form">
-        <textarea name="text" id="tweet-textarea" placeholder="What are you humming about?"></textarea>
-        <div id="new-tweet-footer">
-          <button id="submit" type="submit">Tweet</button>
-          <output name="counter" id="counter" for="tweet-text">140</output>
+        <div>
+          <h2 id="header-name">Awesome Lighthouse Reviewer</h2>
         </div>
-      </form>
-    </section>
- 
-    <article class="tweet-history", id=tweets-container>
-      <header class='th-header'>
-        <div class='name-left'>
-          <img src="https://i.imgur.com/73hZDYK.png">
-          <h3>Newton</h3>
-         
-        </div> 
-        <p>@SirIsaac</p>
       </header>
-      <div class='display-tweet'>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-      </div>
-      <footer>
-        <p>Time</p>
-        <div class='icons'>
-          <i class='far fa-flag' id='flag'></i>
-          <i class='fas fa-retweet' id='retweet'></i>
-          <i class='far fa-heart' id='heart'></i>
-        </div>
-      </footer>
-    </article>
-    
-    <main class="container"></main>
+      <main class="container">
+        <section class="new-tweet">
+          <div class="new-tweet-error"> 
+            <i class="fa-solid fa-triangle-exclamation"></i> 
+            <span></span>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <form class="new-tweet-form" id="new-tweet-form">
+            <label class="tweet-text" for="tweet-text">What are you humming about?</label>
+            <textarea id="tweet-text" name="text"></textarea>
+            <div class="new-tweet-bottom">
+              <button type="submit" class="new-tweet-button">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
+          </form>
+        </section>
+        <section class="tweets" id="tweets-container">
+        </section>
+      </main>
+    </section>
   </body>
 </html>
