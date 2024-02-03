@@ -73,6 +73,23 @@ const loadTweets = () => {
   });
 };
 
+const newTweetValidation = function (sanitizedText) {
+  if (sanitizedText === null) {
+    displayMessage(
+      'Do you have something to say?',
+      "error"
+    );
+    return;
+  }
+  if (sanitizedText.length > 140) {
+    displayMessage(
+      'You are not trying to write a book...',
+      "error"
+    );
+    return;
+  }
+}
+
 $(document).ready(function () {
 
   $("#create-tweet").submit(function (event) {
@@ -84,20 +101,7 @@ $(document).ready(function () {
     const tweetText = $("#tweet-text").val();
     const sanitizedText = $("<p>").text(tweetText).html();
 
-    if (sanitizedText === null) {
-      displayMessage(
-        `We're going to need a bigger boat! Or at least a caption... `,
-        "error"
-      );
-      return;
-    }
-    if (sanitizedText.length > 140) {
-      displayMessage(
-        `We're not writing the entire LOTR, Bilbo! Let's just start with "The Hobbit", if it were 140 characters`,
-        "error"
-      );
-      return;
-    }
+
 
     //AJAX post req in client.js that send form to server
     $.post("/tweets", { text: sanitizedText }, function (response) {
