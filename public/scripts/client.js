@@ -1,5 +1,24 @@
 // function definitions //
 
+//function to to toggle the new tweet box
+const toggleWriteNewTweet = function() {
+  if ($(".new-tweet-form").is(":visible")) {
+    $(".new-tweet-form").slideUp();
+    $(".nav-bar-right > i").removeClass("fa-angles-up");
+    $(".nav-bar-right > i").addClass("fa-angles-down");
+  } else {
+    $(".new-tweet-form").slideDown({
+      start: function() {
+        $(this).css({
+          display: "flex"
+        });
+      }
+    });
+    $(".nav-bar-right > i").removeClass("fa-angles-down");
+    $(".nav-bar-right > i").addClass("fa-angles-up");
+    $("#tweet-text").focus();
+  }
+};
 // create new tweet
 const createTweetElement = function(tweetData) {
   const { user, content, created_at } = tweetData;
@@ -107,7 +126,7 @@ $("document").ready(function() {
 
   //down arrow button handler to show/hide new tweet on click
   $(".nav-bar-right > i").on("click", function() {
-    toggleNewTweet();
+    toggleWriteNewTweet();
   });
   
   // form submit handler to save new tweet to server and update display
