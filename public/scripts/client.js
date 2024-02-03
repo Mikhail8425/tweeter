@@ -89,6 +89,19 @@ const newTweetValidation = function (sanitizedText) {
   }
 }
 
+const addNewTweetToDisplay = function(tweetData, sanitizedText) {
+  const currentTweetCount = $("#tweets-container>article").length;
+  const newTweetCount = tweetData.length;
+  for (let index = newTweetCount - 1; index >= currentTweetCount; index--) {
+    let tweetToAdd = tweetData[index];
+    if (tweetToAdd.content.text === sanitizedText) {
+      const newTweet = createTweetElement(tweetToAdd);
+      $('#tweets-container').prepend(newTweet);
+      break;
+    }
+  }
+};
+
 $("document").ready(function() {
   loadTweetsFromServer(renderTweets);
 
@@ -101,8 +114,8 @@ $("document").ready(function() {
   $('.new-tweet-form').on("submit", function(event) {
     event.preventDefault();
     hideError();
-    let newTweetText = $("#tweet-text").val();
-    if (isNewTweetValid(newTweetText)) {
+    let sanitizedText = $("#tweet-text").val();
+    if (isNewTweetValid(sanitizedText)) {
       $.ajax({
         url: "http://localhost:8080/tweets",
         context: document.body,
@@ -110,7 +123,7 @@ $("document").ready(function() {
         method: "POST",
         success: function(data, textStatus, jqXHR) {
           loadTweetsFromServer((tweets) => {
-            addNewTweetToDisplay(tweets, newTweetText);
+            addNewTweetToDisplay(tweets, sanitizedText);
           });
           resetNewTweetBox();
         },

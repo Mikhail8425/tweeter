@@ -1,39 +1,32 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 nav {
-  position: fixed;
   height: 120px;
   width: 100%;
   background-color: #4056A1;
   color: #FFFFFF;
-  display: flex;
+  padding: 0 1.5em;
+  display:flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items:center;
+  position:fixed;
+  top: 0px;
 }
 
-#logo{
-  font-family: 'Bungee', sans-serif;
-  margin-left: 1.5em;
+.tweeter {
+  font-family: "Bungee", sans-serif;
 }
 
-span{
-  margin-right: 1.5em;
-  font-family: 'Source Sans 3', sans-serif;
+.write {
+  font-weight: 600;
+}
+
+.nav-bar-right {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
-/* right side */
-p > em{
-  font-weight: 600;
-}
-span > i{
+
+.nav-down-arrow {
   color: red;
 }
-
-
-
