@@ -58,17 +58,16 @@ const renderTweets = function (tweets) {
 };
 
 //load tweets from server
-const loadTweets = () => {
-  console.log('loadTweets starts')
+const loadTweetsFromServer = function(callback) {
   $.ajax({
-    url: '/tweets',
-    method: 'GET',
-    dataType: 'json',
-    success: (tweets) => {
-      renderTweets(tweets);
+    url: "http://localhost:8080/tweets",
+    context: document.body,
+    method: "GET",
+    success: function(data, textStatus, jqXHR) {
+      callback(data);
     },
-    error: (error) => {
-      console.error(error);
+    error: function(jqXHR, textStatus, errorThrown) {
+      displayError('Problem loading tweets');
     }
   });
 };
@@ -90,38 +89,35 @@ const newTweetValidation = function (sanitizedText) {
   }
 }
 
-$(document).ready(function () {
+$("document").ready(function() {
+  loadTweetsFromServer(renderTweets);
 
-  $("#create-tweet").submit(function (event) {
-    //prevent the default behaviour (refresh)
-
-    event.preventDefault();
-
-    //serialize form data
-    const tweetText = $("#tweet-text").val();
-    const sanitizedText = $("<p>").text(tweetText).html();
-
-
-
-    //AJAX post req in client.js that send form to server
-    $.post("/tweets", { text: sanitizedText }, function (response) {
-      console.log(response);
-      const $tweetContainer = $("#tweet-container");
-      $tweetContainer.empty();
-      $("#tweet-text").val("");
-      loadTweets();
-    });
+  //down arrow button handler to show/hide new tweet on click
+  $(".nav-bar-right > i").on("click", function() {
+    toggleNewTweet();
   });
-
-  $('.scroll').click(() => {
-    $('html,body').animate({ scrollTop: 0 }, 1000);
-    $('#tweet-text').focus();
-  });
-
-  loadTweets();
-  const $submitTweet = $('#submit-tweet');
-  $submitTweet.on('submit', function (event) {
+  
+  // form submit handler to save new tweet to server and update display
+  $('.new-tweet-form').on("submit", function(event) {
     event.preventDefault();
-    const serializedData = $(this).serialize();
+    hideError();
+    let newTweetText = $("#tweet-text").val();
+    if (isNewTweetValid(newTweetText)) {
+      $.ajax({
+        url: "http://localhost:8080/tweets",
+        context: document.body,
+        data: $("#tweet-text").serialize(),
+        method: "POST",
+        success: function(data, textStatus, jqXHR) {
+          loadTweetsFromServer((tweets) => {
+            addNewTweetToDisplay(tweets, newTweetText);
+          });
+          resetNewTweetBox();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          displayError('Problem saving tweet');
+        }
+      });
+    }
   });
 });
