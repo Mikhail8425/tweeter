@@ -1,4 +1,20 @@
-// function definitions //
+//error hide/display
+const displayError = function(errorMessage) {
+  console.log('displayError', displayError)
+  $(".new-tweet-error>span").text(errorMessage);
+  $(".new-tweet-error").slideDown({
+    start: function() {
+      $(this).css({
+        display: "flex"
+      });
+    }
+  });
+};
+
+const hideError = function() {
+  console.log('hideError starts')
+  $(".new-tweet-error").slideUp();
+};
 
 //function to to toggle the new tweet box
 const toggleWriteNewTweet = function() {
@@ -19,6 +35,7 @@ const toggleWriteNewTweet = function() {
     $("#tweet-text").focus();
   }
 };
+
 // create new tweet
 const createTweetElement = function(tweetData) {
   const { user, content, created_at } = tweetData;
@@ -29,6 +46,7 @@ const createTweetElement = function(tweetData) {
   let $image = $("<img>").attr('src', user.avatars);
   let $name = $("<div>").text(user.name);
   let $handleAside = $("<aside>").text(user.handle);
+  //header structure
   $article.append(
     $header.append(
       $headerDiv.append(
@@ -50,6 +68,7 @@ const createTweetElement = function(tweetData) {
   let $footerFlag = $("<i>").addClass("fa-solid fa-flag");
   let $footerReTweet = $("<i>").addClass("fa-solid fa-retweet");
   let $footerHeart = $("<i>").addClass("fa-solid fa-heart");
+  //footer structure
   $article.append(
     $footer.append(
       $footerTimeDiv
@@ -68,7 +87,6 @@ const createTweetElement = function(tweetData) {
 
 //loops through all tweets and render them
 const renderTweets = function (tweets) {
-  console.log('renderTweets starts')
   const $container = $('#tweets-container');
   tweets.forEach((tweet) => {
     const tweetList = createTweetElement(tweet);
@@ -78,6 +96,7 @@ const renderTweets = function (tweets) {
 
 //load tweets from server
 const loadTweetsFromServer = function(callback) {
+  console.log('loadTweetsFromServer starts')
   $.ajax({
     url: "http://localhost:8080/tweets",
     context: document.body,
@@ -89,6 +108,7 @@ const loadTweetsFromServer = function(callback) {
       displayError('Problem loading tweets');
     }
   });
+  console.log('loadTweetsFromServer ends')
 };
 
 const newTweetValidation = function (sanitizedText) {
@@ -97,15 +117,16 @@ const newTweetValidation = function (sanitizedText) {
       'Do you have something to say?',
       "error"
     );
-    return;
+    return false;
   }
   if (sanitizedText.length > 140) {
     displayMessage(
       'You are not trying to write a book...',
       "error"
     );
-    return;
+    return false;
   }
+  return true;
 }
 
 const addNewTweetToDisplay = function(tweetData, sanitizedText) {
@@ -121,7 +142,16 @@ const addNewTweetToDisplay = function(tweetData, sanitizedText) {
   }
 };
 
+//function to reset the new tweet box
+const resetNewTweetBox = function() {
+  console.log('resetNewTweetBox starts')
+  $("#tweet-text").val("");
+  $("#tweet-text").parent().find(".counter").val(140);
+  console.log('resetNewTweetBox ends')
+};
+
 $("document").ready(function() {
+  console.log('document ready starts')
   loadTweetsFromServer(renderTweets);
 
   //down arrow button handler to show/hide new tweet on click
@@ -134,7 +164,8 @@ $("document").ready(function() {
     event.preventDefault();
     hideError();
     let sanitizedText = $("#tweet-text").val();
-    if (isNewTweetValid(sanitizedText)) {
+    if (newTweetValidation(sanitizedText)) {
+      console.log('calling ajax')
       $.ajax({
         url: "http://localhost:8080/tweets",
         context: document.body,
@@ -150,6 +181,10 @@ $("document").ready(function() {
           displayError('Problem saving tweet');
         }
       });
+    } else {
+      console.log('not calling ajax')
     }
   });
+  console.log('document ready done')
 });
+
